@@ -1,0 +1,18 @@
+# Database personale (non caricarlo, ogni utente avrà il suo)
+3DPrintCalc_Database.json
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Ambienti virtuali
+venv/
+.env
+
+# PyInstaller (build e exe)
+build/
+dist/
+*.spec
+
+# VS Code
+.vscode/
