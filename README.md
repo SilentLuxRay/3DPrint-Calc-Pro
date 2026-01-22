@@ -13,7 +13,7 @@ Richiede: `pip install customtkinter Pillow`
 Avvio: `python 3DPrintCalc.py`
 
 ## 🌐 Versione Web
-Accedi alla WebApp qui: [https://print3dcalculator.altervista.org/](Link)
+Accedi alla WebApp qui: [Link](https://print3dcalculator.altervista.org/)
 
 ## 📸 Screenshots
 <p align="center">
