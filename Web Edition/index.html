@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DPrintCalc Pro v2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <aside class="sidebar">
+            <h1 class="logo">3DPrintCalc</h1>
+            <nav class="nav-menu">
+                <button onclick="showTab('calc')" id="nav-calc" class="nav-btn">Preventivatore</button>
+                <button onclick="showTab('printers')" id="nav-printers" class="nav-btn">Stampanti</button>
+                <button onclick="showTab('filaments')" id="nav-filaments" class="nav-btn">Filamenti</button>
+            </nav>
+            
+            <!-- FOOTER SIDEBAR CON INFO AGGIUNTIVE -->
+            <div class="sidebar-footer">
+                <button onclick="toggleLang()" id="lang-btn" class="lang-toggle">🌐 ITA</button>
+                <div class="credits">
+                    <p class="author">@RobertoBernardini</p>
+                    <p class="repo">EXE Version: <a href="https://github.com/SilentLuxRay/3DPrint-Calc-Pro" target="_blank">GitHub</a></p>
+                    <p class="license">OpenSource</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- TAB: PREVENTIVATORE -->
+            <section id="tab-calc" class="tab">
+                <h2 id="h-calc">Nuovo Preventivo</h2>
+                <div class="top-grid">
+                    <div class="card">
+                        <h3 id="h-setup">SETUP STAMPA</h3>
+                        <div id="color-preview" class="color-preview"></div>
+                        <select id="sel-printer"></select>
+                        <select id="sel-filament" onchange="updateColorPreview()"></select>
+                        <div class="input-group"><label id="lbl-g">Grammi (g)</label><input type="number" id="in-g" value="50"></div>
+                        <div class="input-group"><label id="lbl-h">Ore Stampa (h)</label><input type="number" id="in-h" value="2"></div>
+                    </div>
+                    <div class="card">
+                        <h3 id="h-bus">BUSINESS</h3>
+                        <div class="input-group"><label id="lbl-markup">Rincaro (%)</label><input type="number" id="in-markup" value="50"></div>
+                        <div class="input-group"><label id="lbl-iva">IVA (%)</label><input type="number" id="in-iva" value="22"></div>
+                        <div class="input-group"><label id="lbl-elec">Energia (€/kWh)</label><input type="number" id="in-elec" value="0.25"></div>
+                        <div class="input-group"><label id="lbl-rate">Tariffa (€/h)</label><input type="number" id="in-rate" value="20"></div>
+                    </div>
+                </div>
+
+                <div class="phases-container">
+                    <div class="phase-col">
+                        <h4 id="h-mod">Modellazione</h4>
+                        <div class="inline-add"><input type="text" id="add-mod-n" placeholder="Nome"><input type="number" id="add-mod-c" placeholder="€"><button onclick="addPhase('mod')">+</button></div>
+                        <div id="list-mod" class="phase-list"></div>
+                    </div>
+                    <div class="phase-col">
+                        <h4 id="h-post">Post-Produzione</h4>
+                        <div class="inline-add"><input type="text" id="add-post-n" placeholder="Nome"><input type="number" id="add-post-c" placeholder="€"><button onclick="addPhase('post')">+</button></div>
+                        <div id="list-post" class="phase-list"></div>
+                    </div>
+                    <div class="phase-col">
+                        <h4 id="h-cons">Consumabili</h4>
+                        <div class="inline-add"><input type="text" id="add-cons-n" placeholder="Nome"><input type="number" id="add-cons-c" placeholder="€"><button onclick="addPhase('cons')">+</button></div>
+                        <div id="list-cons" class="phase-list"></div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <button onclick="calculate()" class="calc-btn" id="btn-calc">CALCOLA PREVENTIVO</button>
+                    <div id="total-price">€ 0.00</div>
+                    <div id="detailed-breakdown"></div>
+                    <div class="action-row">
+                        <button id="btn-reg" onclick="register()" disabled>REGISTRA</button>
+                        <button id="btn-rep" onclick="generateReport()" disabled>REPORT</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: STAMPANTI -->
+            <section id="tab-printers" class="tab" style="display:none;">
+                <div id="p-list-view">
+                    <button class="add-main-btn" onclick="newPrinter()" id="btn-add-p">+ Nuova Stampante</button>
+                    <div id="printer-list" class="cards-list"></div>
+                </div>
+                <div id="p-edit-view" style="display:none;">
+                    <button class="back-btn" onclick="showTab('printers')" id="btn-back-p">← Torna</button>
+                    <div class="card" id="p-form"></div>
+                    <div class="card">
+                        <h3 id="h-wear">Componenti Usura</h3>
+                        <div class="inline-add">
+                            <input type="text" id="new-cp-n" placeholder="Pezzo">
+                            <input type="number" id="new-cp-c" placeholder="€">
+                            <input type="number" id="new-cp-l" placeholder="Ore">
+                            <button onclick="addComp()">+</button>
+                        </div>
+                        <div id="p-comp-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: FILAMENTI -->
+            <section id="tab-filaments" class="tab" style="display:none;">
+                <div id="f-list-view">
+                    <button class="add-main-btn" onclick="newFilament()" id="btn-add-f">+ Nuovo Filamento</button>
+                    <div id="filament-list" class="cards-list"></div>
+                </div>
+                <div id="f-edit-view" style="display:none;">
+                    <button class="back-btn" onclick="showTab('filaments')" id="btn-back-f">← Torna</button>
+                    <div class="card" id="f-form"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

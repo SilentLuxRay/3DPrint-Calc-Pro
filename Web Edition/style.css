@@ -1,0 +1,75 @@
+:root { --bg-dark: #1a1b26; --bg-side: #16161e; --bg-card: #24283b; --accent: #7aa2f7; --text: #a9b1d6; --success: #9ece6a; --danger: #f7768e; }
+body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-dark); color: var(--text); user-select: none; }
+.app-container { display: flex; height: 100vh; }
+.sidebar { width: 260px; background: var(--bg-side); display: flex; flex-direction: column; padding: 20px 0; border-right: 1px solid #2f334d; }
+.logo { color: var(--accent); text-align: center; font-size: 24px; margin-bottom: 30px; font-weight: bold; letter-spacing: 1px; }
+.nav-btn { width: 100%; padding: 15px 25px; background: transparent; border: none; color: var(--text); text-align: left; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.nav-btn.active { background: var(--accent); color: black; }
+.nav-btn:hover:not(.active) { background: #2f334d; }
+.lang-toggle { margin-top: auto; background: #24283b; border: none; color: white; padding: 10px; cursor: pointer; border-radius: 5px; margin: 10px 20px; }
+.main-content { flex: 1; padding: 30px; overflow-y: auto; }
+.top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.card { background: var(--bg-card); padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+h3 { margin: 0 0 15px; font-size: 14px; color: var(--accent); border-bottom: 1px solid #3b4261; padding-bottom: 5px; }
+.input-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+input, select { background: #1a1b26; border: 1px solid #414868; color: white; padding: 8px; border-radius: 6px; width: 140px; }
+.color-preview { width: 30px; height: 30px; border-radius: 50%; margin: 0 auto 15px; border: 2px solid white; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+.phases-container { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.phase-col { background: #1a1b26; padding: 15px; border-radius: 10px; border: 1px solid #2f334d; }
+.inline-add { display: flex; gap: 5px; margin-bottom: 10px; }
+.inline-add input { width: 40%; padding: 5px; font-size: 12px; }
+.inline-add button { background: var(--accent); border: none; border-radius: 4px; width: 30px; cursor: pointer; color: black; font-weight: bold; }
+.phase-row { display: flex; justify-content: space-between; background: var(--bg-card); padding: 5px 10px; margin-bottom: 3px; border-radius: 4px; font-size: 12px; }
+.result-card { text-align: center; padding: 20px; background: #1a1b26; border-radius: 15px; }
+.calc-btn { background: var(--success); color: black; border: none; padding: 15px 40px; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; width: 100%; max-width: 400px; }
+#total-price { font-size: 54px; font-weight: bold; color: var(--success); margin: 15px 0; }
+#detailed-breakdown { font-size: 13px; line-height: 1.6; color: #787c99; margin-bottom: 20px; white-space: pre-line; }
+.action-row { display: flex; gap: 10px; justify-content: center; }
+.action-row button { padding: 10px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; background: #3b4261; color: white; }
+.action-row button:enabled { background: var(--accent); color: black; }
+.item-card { background: var(--bg-card); padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; margin-bottom: 8px; border: 1px solid #2f334d; }
+.add-main-btn { background: var(--accent); border: none; padding: 10px 20px; border-radius: 8px; margin-bottom: 20px; cursor: pointer; font-weight: bold; color: black; }
+/* Footer Sidebar */
+.sidebar-footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px 20px;
+}
+
+.credits {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #2f334d;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #565f89; /* Grigio tenue per non distrarre */
+}
+
+.credits p {
+    margin: 2px 0;
+}
+
+.credits .author {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.credits a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.credits a:hover {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+}
+
+.credits .license {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 9px;
+    opacity: 0.7;
+}
