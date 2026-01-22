@@ -2,12 +2,11 @@
 
 Versione avanzata del calcolatore per stampa 3D. Disponibile sia come software desktop che come WebApp.
 
-## 🚀 Novità v2.0 (Elite Edition)
+## 🚀 Novità v2.0
 - **Dettaglio Costi:** Visualizzazione separata di Materiale, Energia, Usura (Struttura + Pezzi) e Consumabili.
 - **Workflow Inline:** Aggiunta di fasi di modellazione, post-produzione e consumabili senza finestre popup.
 - **Web App Version:** Ora puoi usarlo direttamente dal browser, con salvataggio dati locale.
 - **Report Avanzato:** Generazione di preventivi professionali in .txt.
-- **Multi-lingua:** Supporto ITA/ENG dinamico.
 
 ## 💻 Versione Desktop (Python)
 Richiede: `pip install customtkinter Pillow`
